@@ -25,14 +25,6 @@ jobs:
           echo "BASE_URL: $BASE_URL"
           echo "API_URL: $API_URL"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Install docker-compose
         run: |
           sudo apt-get update
@@ -40,6 +32,14 @@ jobs:
 
       - name: Start Docker container
         run: docker-compose up -d
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Run Cypress tests
         run: npm run cypress:run:ci
