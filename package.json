@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cp cypress.env.qa.json cypress.env.json && cypress open",
-    "cypress:run:ci": "cypress run --browser chrome",
     "cypress:run": "cp cypress.env.qa.json cypress.env.json && cypress run --browser chrome",
     "cypress:run:ui": "cp cypress.env.qa.json cypress.env.json && cypress run --browser chrome --env grepTags=ui",
     "cypress:run:smoke": "cp cypress.env.qa.json cypress.env.json && cypress run --browser chrome --env grepTags=smoke",
