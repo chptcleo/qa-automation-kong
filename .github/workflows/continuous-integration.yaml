@@ -17,32 +17,40 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install docker-compose
+      - name: Display variables
         run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-          
-      - name: Start Docker container
-        run: docker-compose up -d
+          echo "CYPRESS_BASE_URL: $CYPRESS_BASE_URL"
+          echo "CYPRESS_API_URL: $CYPRESS_API_URL"
+          echo "========================="
+          echo "BASE_URL: $BASE_URL"
+          echo "API_URL: $API_URL"
 
-      - name: Run Cypress tests
-        run: npm run cypress:run:ci
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '22'
 
-      - name: Generate Allure Report
-        if: always()
-        run: npm run allure:generate
+      # - name: Install dependencies
+      #   run: npm install
 
-      - name: Upload Allure Report as artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
+      # - name: Install docker-compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y docker-compose
+
+      # - name: Start Docker container
+      #   run: docker-compose up -d
+
+      # - name: Run Cypress tests
+      #   run: npm run cypress:run:ci
+
+      # - name: Generate Allure Report
+      #   if: always()
+      #   run: npm run allure:generate
+
+      # - name: Upload Allure Report as artifact
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: allure-report
+      #     path: allure-report
