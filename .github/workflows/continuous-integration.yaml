@@ -27,8 +27,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      - name: Start Docker container
-        run: docker-compose up -d
+      # - name: Start Docker container
+      #   run: docker-compose up -d
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -38,8 +38,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # - name: Run Cypress tests
+      #   run: npm run cypress:run:ci
+
       - name: Run Cypress tests
-        run: npm run cypress:run:ci
+        uses: cypress-io/github-action@v6
+        with:
+          start: docker-compose up -d
+          wait-on: 'http://localhost:8002'
+          wait-on-timeout: 120 
 
       - name: Generate Allure Report
         if: always()
