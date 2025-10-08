@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: qa 
     env:
-      CYPRESS_BASE_URL: ${{ vars.CYPRESS_BASE_URL }}
-      CYPRESS_API_URL: ${{ vars.CYPRESS_API_URL }}
+      BASE_URL: ${{ vars.CYPRESS_BASE_URL }}
+      API_URL: ${{ vars.CYPRESS_API_URL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
