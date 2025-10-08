@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: qa 
     env:
-      CYPRESS_BASE_URL: ${{ vars.CYPRESS_BASE_URL }}
+      CYPRESS_UI_URL: ${{ vars.CYPRESS_UI_URL }}
       CYPRESS_API_URL: ${{ vars.CYPRESS_API_URL }}
     steps:
       - name: Checkout repository
@@ -19,11 +19,8 @@ jobs:
 
       - name: Display variables
         run: |
-          echo "CYPRESS_BASE_URL: $CYPRESS_BASE_URL"
+          echo "CYPRESS_UI_URL: $CYPRESS_UI_URL"
           echo "CYPRESS_API_URL: $CYPRESS_API_URL"
-          echo "========================="
-          echo "BASE_URL: $BASE_URL"
-          echo "API_URL: $API_URL"
 
       - name: Install docker-compose
         run: |

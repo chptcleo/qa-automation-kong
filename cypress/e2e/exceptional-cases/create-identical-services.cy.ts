@@ -15,11 +15,6 @@ describe("Create Identical Services", () => {
   before(() => {
     // Cleanup the created service in last run
     // The reason why cleanup in before rather than after is that helping QA to investigate the failed case
-    console.log("======= Environment Variables ====================");
-    console.log(Cypress.env("BASE_URL"));
-    console.log(Cypress.env("API_URL"));
-    console.log("========= Environment Variables ====================");
-
     cy.deleteGatewayServiceByApi(gatewayServiceName);
     cy.gotoGatewayServices();
   });
