@@ -15,10 +15,12 @@ This is a comprehensive end-to-end test automation framework for Kong API Gatewa
 ## 3. Setup Instructions for Running Tests Locally
 
 ### Prerequisites
+
 - Node.js 18+ and npm
 - Docker and Docker Compose
 
 ### Quick Start
+
 ```bash
 # 1. Clone and setup
 git clone https://github.com/chptcleo/qa-automation-kong.git
@@ -43,6 +45,7 @@ npm run allure:generate && npm run allure:open
 ```
 
 ### Test Execution Options
+
 ```bash
 npm run cypress:run:ui         # UI tests only
 npm run cypress:run:smoke      # Smoke tests only
@@ -52,19 +55,23 @@ npm run cypress:run:regression # Regression tests only
 ## 4. CI Pipeline and Test Results
 
 ### Auto-Triggered CI
+
 - **Runs on**: Every push to any branch or pull request
 - **Manual**: Actions tab → Continuous Integration → Run workflow
 
 ### View Test Results
+
 1. Go to **Actions** tab in GitHub
 2. Click latest workflow run
 3. Download **allure-report** artifact
 4. Extract and run:
+
 ```bash
 allure open allure-report
 ```
 
 ### Pipeline Configuration
+
 - Auto-deploys Kong Gateway with Docker Compose
 - Runs Cypress tests in Chrome headless mode
 - Generates Allure reports with screenshots
@@ -72,14 +79,17 @@ allure open allure-report
 ## 5. Multi-Environment Testing
 
 ### Environment Configuration
+
 Create config files for different environments:
+
 ```bash
 cypress.env.qa.json       # QA environment
-cypress.env.staging.json  # Staging environment  
+cypress.env.staging.json  # Staging environment
 cypress.env.prod.json     # Production environment
 ```
 
 ### Add Environment Scripts to `package.json`
+
 ```json
 {
   "scripts": {
@@ -90,11 +100,11 @@ cypress.env.prod.json     # Production environment
 ```
 
 ### Run Tests by Environment
+
 ```bash
 npm run cypress:run      # QA (default)
 npm run cypress:staging  # Staging
 npm run cypress:prod     # Production
 ```
-
 
 **Happy Testing! 🚀**
