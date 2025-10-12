@@ -12,7 +12,7 @@ describe("Create Service With Route", () => {
   const fullUrl = `${protocol}://${host}`;
   const gatewayServiceName = "auto-test-service";
   const routeName = "auto-test-route";
-  const routePath = `/mock`;
+  const routePath = "/mock";
 
   before(() => {
     // Cleanup the created service and route in last run
@@ -38,7 +38,7 @@ describe("Create Service With Route", () => {
         .should("have.text", gatewayServiceName);
       viewingGatewayServicePage.getProtocol().should("have.text", protocol);
       viewingGatewayServicePage.getHost().should("have.text", host);
-    }
+    },
   );
 
   it(
@@ -50,6 +50,6 @@ describe("Create Service With Route", () => {
       routesPage.getTitle().should("eq", "Routes | Kong Manager");
       routesPage.getNameByRouteName(routeName).should("have.text", routeName);
       routesPage.getPathsByRouteName(routeName).should("have.text", routePath);
-    }
+    },
   );
 });

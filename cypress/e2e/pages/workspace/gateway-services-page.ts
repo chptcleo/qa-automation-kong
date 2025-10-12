@@ -2,7 +2,7 @@ import { WorkspaceBasePage } from "./workspace-base-page";
 
 export class GatewayServicesPage extends WorkspaceBasePage {
   // Locator for the "New gateway service" button
-  newGatewayServiceSpanLocator = '[data-testid="kui-icon-wrapper-add-icon"]';
+  newGatewayServiceSpanLocator = "[data-testid='kui-icon-wrapper-add-icon']";
 
   // Click the "New gateway service" button to open the create gateway service page
   openCreateGatewayServicePage() {

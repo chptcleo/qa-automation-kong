@@ -7,6 +7,21 @@ import { CreateGatewayServicePage } from "../e2e/pages/workspace/create-gateway-
 import { ViewingGatewayServicePage } from "../e2e/pages/workspace/gateway-service/viewing-gateway-service-page";
 import { CreateRoutePage } from "../e2e/pages/workspace/create-route-page";
 
+// Type definitions for Kong API responses
+interface ServicesResponse {
+  data: {
+    id: string;
+    name: string;
+  }[];
+}
+
+interface RoutesResponse {
+  data: {
+    id: string;
+    name: string;
+  }[];
+}
+
 // Custom command to navigate to the Gateway Services page
 Cypress.Commands.add("gotoGatewayServices", () => {
   const pageUtils = new PageUtils();
@@ -40,7 +55,7 @@ Cypress.Commands.add(
       .should("eq", "Create Gateway Service | Kong Manager");
 
     createGatewayServicePage.createGatewayService(fullUrl, gatewayServiceName);
-  }
+  },
 );
 
 // Custom command to create a new Route for a given Gateway Service
@@ -63,41 +78,41 @@ Cypress.Commands.add(
     createRoutePage.getTitle().should("eq", "Create route | Kong Manager");
 
     createRoutePage.createRoute(routeName, routePath);
-  }
+  },
 );
 
 // Custom command to delete a Gateway Service and its Route by API
 Cypress.Commands.add(
   "deleteGatewayServiceWithRouteByApi",
   (gatewayServiceName: string, routeName: string) => {
-    cy.request({
+    cy.request<ServicesResponse>({
       method: "GET",
       url: `${Cypress.env("API_URL")}/default/services/`,
       failOnStatusCode: false,
     }).then((response) => {
       const gatewayServices = response.body.data;
       const gatewayService = gatewayServices.find(
-        (service: any) => service.name === gatewayServiceName
+        (service) => service.name === gatewayServiceName,
       );
       // If the service does not exist, exit early
       if (!gatewayService) {
         return;
       }
       const serviceId = gatewayService.id;
-      cy.request({
+      cy.request<RoutesResponse>({
         method: "GET",
         url: `${Cypress.env("API_URL")}/default/services/${serviceId}/routes`,
         failOnStatusCode: false,
       }).then((response) => {
         const routes = response.body.data;
-        const route = routes.find((route: any) => route.name === routeName);
+        const route = routes.find((route) => route.name === routeName);
         // If the route exists, delete it first
         if (route) {
           const routeId = route.id;
           cy.request({
             method: "DELETE",
             url: `${Cypress.env(
-              "API_URL"
+              "API_URL",
             )}/default/services/${serviceId}/routes/${routeId}`,
             failOnStatusCode: false,
           });
@@ -110,21 +125,21 @@ Cypress.Commands.add(
         });
       });
     });
-  }
+  },
 );
 
 // Custom command to delete a Gateway Service by API
 Cypress.Commands.add(
   "deleteGatewayServiceByApi",
   (gatewayServiceName: string) => {
-    cy.request({
+    cy.request<ServicesResponse>({
       method: "GET",
       url: `${Cypress.env("API_URL")}/default/services/`,
       failOnStatusCode: false,
     }).then((response) => {
       const gatewayServices = response.body.data;
       const gatewayService = gatewayServices.find(
-        (service: any) => service.name === gatewayServiceName
+        (service) => service.name === gatewayServiceName,
       );
       if (!gatewayService) {
         return;
@@ -136,5 +151,5 @@ Cypress.Commands.add(
         failOnStatusCode: false,
       });
     });
-  }
+  },
 );

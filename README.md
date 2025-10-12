@@ -1,4 +1,4 @@
-# Kong QA Automatical Framework
+# Kong QA Automation Framework
 
 ## 1. Project Overview
 

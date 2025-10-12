@@ -9,7 +9,7 @@ export class RoutesPage extends GatewayServiceBasePage {
   // Get the paths element of a route by route name
   getPathsByRouteName(routeName: string) {
     return cy.get(
-      `[data-testid="${routeName}"] [data-testid="paths"] .badge-content-wrapper`
+      `[data-testid="${routeName}"] [data-testid="paths"] .badge-content-wrapper`,
     );
   }
 }
