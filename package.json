@@ -5,15 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint:check": "npx eslint .",
-    "eslint:fix": "npx eslint . --fix",
     "cypress:open": "cp cypress.env.qa.json cypress.env.json && cypress open",
     "cypress:run": "cp cypress.env.qa.json cypress.env.json && cypress run --browser chrome",
     "cypress:run:ui": "cp cypress.env.qa.json cypress.env.json && cypress run --browser chrome --env grepTags=ui",
     "cypress:run:smoke": "cp cypress.env.qa.json cypress.env.json && cypress run --browser chrome --env grepTags=smoke",
     "cypress:run:regression": "cp cypress.env.qa.json cypress.env.json && cypress run --browser chrome --env grepTags=regression",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
-    "allure:open": "allure open allure-report"
+    "allure:open": "allure open allure-report",
+    "eslint:check": "npx eslint .",
+    "eslint:fix": "npx eslint . --fix",
+    "prettier": "npx prettier --write ."
   },
   "keywords": [],
   "author": "",
