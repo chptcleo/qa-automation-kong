@@ -10,7 +10,7 @@ describe("Create Identical Services", () => {
   const host = "httpbin.konghq.com";
   const protocol = "http";
   const fullUrl = `${protocol}://${host}`;
-  const gatewayServiceName = `auto-test-identical-service`;
+  const gatewayServiceName = "auto-test-identical-service";
 
   before(() => {
     // Cleanup the created service in last run
@@ -46,8 +46,8 @@ describe("Create Identical Services", () => {
         .getErrorMessage()
         .should(
           "include.text",
-          `UNIQUE violation detected on '{name=\"${gatewayServiceName}\"}'`
+          `UNIQUE violation detected on '{name=\"${gatewayServiceName}\"}'`,
         );
-    }
+    },
   );
 });

@@ -4,7 +4,7 @@
     "lib": ["dom", "es6"],
     "module": "node16",
     "types": ["cypress"],
-    "moduleResolution": "node16", 
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "strict": true
