@@ -11,6 +11,8 @@ This is a comprehensive end-to-end test automation framework for Kong API Gatewa
 - **Allure Reporting**: Detailed reports with screenshots and CI integration
 - **Multi-Environment**: Local, QA, and custom environment support
 - **Kong Gateway Testing**: workspace management, and UI validation
+- **Code Quality**: ESLint for TypeScript linting and Prettier for code formatting
+- **Development Tools**: Automated code quality checks and consistent styling
 
 ## 3. Setup Instructions for Running Tests Locally
 
@@ -106,5 +108,26 @@ npm run cypress:run      # QA (default)
 npm run cypress:staging  # Staging
 npm run cypress:prod     # Production
 ```
+
+## 6. Code Quality Tools
+
+### ESLint - Code Linting
+Ensures TypeScript code quality and catches potential issues.
+
+```bash
+npm run eslint:check    # Check for linting issues
+npm run eslint:fix      # Auto-fix linting issues
+```
+
+### Prettier - Code Formatting
+Maintains consistent code formatting across all files.
+
+```bash
+npm run prettier        # Format all files
+```
+
+### Configuration
+- **ESLint**: `eslint.config.mts` - TypeScript rules and error detection
+- **Prettier**: `.prettierrc.json` - Code formatting standards (2 spaces, semicolons, double quotes)
 
 **Happy Testing! 🚀**
